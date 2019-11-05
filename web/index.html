@@ -6,5 +6,25 @@
 </head>
 <body>
   <script src="main.dart.js" type="application/javascript"></script>
+  <script src="/__/firebase/7.2.3/firebase-app.js"></script>
+  <script src="/__/firebase/7.2.3/firebase-analytics.js"></script>
+  <script src="/__/firebase/7.2.3/firebase-messaging.js"></script>
+  <script src="/__/firebase/7.2.3/firebase-storage.js"></script>
+  <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
+  <script src="/__/firebase/7.2.3/firebase-firestore.js"></script>
+  <script>
+    var config = {
+        apiKey: "AIzaSyCfLPlG3uk4_CrmnozYxi7Q-Sb5IaFaRXk",
+        authDomain: "beeapp-af1c3.firebaseapp.com",
+        databaseURL: "https://beeapp-af1c3.firebaseio.com",
+        projectId: "beeapp-af1c3",
+        storageBucket: "beeapp-af1c3.appspot.com",
+        messagingSenderId: "343942339205",
+        appId: "1:343942339205:web:6fb2c1d587dac4b3e167ec",
+        measurementId: "G-K5QJDNWQ5B"
+      }
+    firebase.initializeApp(config);
+    firebase.analytics();
+  </script>
 </body>
 </html>
