@@ -2,6 +2,7 @@ import 'package:bee_app/get_started_widget/btn_get_started_button.dart';
 import 'package:bee_app/get_started_widget/send_money_to_friend_text.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GetStartedWidget extends StatefulWidget {
   @override
@@ -48,6 +49,7 @@ class _GetStartedWidgetState extends State<GetStartedWidget>
 
   @override
   Widget build(BuildContext context) {
+    print(Provider.of<bool>(context));
     return Scaffold(
       body: Container(
         constraints: BoxConstraints.expand(),
