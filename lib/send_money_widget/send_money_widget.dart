@@ -37,12 +37,12 @@ class SendMoneyWidget extends StatelessWidget {
                         children: [
                           Positioned(
                             left: 0,
-                            right: 100,
+                            right: 0,
                             child: Text(
-                              "Send M",
+                              "Send Money",
                               style: TextStyle(
                                 color: Color.fromARGB(255, 35, 27, 71),
-                                fontSize: 150,
+                                fontSize: 40,
                                 fontFamily: "",
                                 fontWeight: FontWeight.w700,
                               ),

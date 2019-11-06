@@ -58,13 +58,13 @@ class _ContactsWidgetState extends State<ContactsWidget>
                   alignment: Alignment.centerLeft,
                   children: [
                     Positioned(
-                      left: 0,
-                      right: 73,
+                      left: 30,
+                      right: 0,
                       child: Text(
-                        "My Co",
+                        "My Contacts",
                         style: TextStyle(
                           color: Color.fromARGB(255, 35, 27, 71),
-                          fontSize: 150,
+                          fontSize: 40,
                           fontFamily: "",
                           fontWeight: FontWeight.w700,
                         ),
@@ -140,6 +140,9 @@ class _ContactsWidgetState extends State<ContactsWidget>
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
+                      Container(
+                        height: 633,
+                      ),
                       Positioned(
                         left: 16,
                         top: 16,

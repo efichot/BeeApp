@@ -97,12 +97,12 @@ class _MyDashboardWidgetState extends State<MyDashboardWidget>
                         children: [
                           Positioned(
                             left: 0,
-                            right: 172,
+                            right: 0,
                             child: Text(
-                              "Dashboard",
+                              "My Dashboard",
                               style: TextStyle(
                                 color: Color.fromARGB(255, 35, 27, 71),
-                                fontSize: 150,
+                                fontSize: 40,
                                 fontFamily: "",
                                 fontWeight: FontWeight.w700,
                               ),

@@ -1,16 +1,10 @@
-# bee_app
+## BeeApp
 
-A new Flutter project.
+Implementation of an ultimate boilerplate with TS and expo for implementing design from supernova studio.
 
-## Getting Started
+![image](https://cdn1.imggmi.com/uploads/2019/10/22/71b321d4549897b285f33a0c29c92534-full.png)
 
-This project is a starting point for a Flutter application.
+- Download
+  [project.sketch](https://drive.google.com/file/d/18XzTUq8MnbdSvq0alVoHcUcTes3IQ2WQ/view)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Imformations
