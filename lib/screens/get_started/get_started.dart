@@ -1,15 +1,14 @@
-import 'package:bee_app/screens/get_started_widget/btn_get_started_button.dart';
-import 'package:bee_app/screens/get_started_widget/send_money_to_friend_text.dart';
+import 'package:bee_app/screens/get_started/btn_get_started_button.dart';
+import 'package:bee_app/screens/get_started/send_money_to_friend_text.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-class GetStartedWidget extends StatefulWidget {
+class GetStarted extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _GetStartedWidgetState();
+  State<StatefulWidget> createState() => _GetStartedState();
 }
 
-class _GetStartedWidgetState extends State<GetStartedWidget>
-    with TickerProviderStateMixin {
+class _GetStartedState extends State<GetStarted> with TickerProviderStateMixin {
   AnimationController appLogoAnimationController;
   AnimationController btnGetStartedButtonAnimationController;
   AnimationController sendMoneyToFriendTextAnimationController;

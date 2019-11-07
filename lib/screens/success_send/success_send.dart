@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SuccessSendWidget extends StatelessWidget {
+class SuccessSend extends StatelessWidget {
   void onBtnDashboardPressed(BuildContext context) =>
       Navigator.pushNamed(context, '/MyDashboard');
 

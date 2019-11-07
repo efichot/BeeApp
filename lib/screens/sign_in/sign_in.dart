@@ -1,17 +1,16 @@
-import 'package:bee_app/screens/sign_in_widget/btn_sign_in_button.dart';
-import 'package:bee_app/screens/sign_in_widget/btn_sign_up_button.dart';
-import 'package:bee_app/screens/sign_in_widget/email_address.dart';
-import 'package:bee_app/screens/sign_in_widget/password.dart';
+import 'package:bee_app/screens/sign_in/btn_sign_in_button.dart';
+import 'package:bee_app/screens/sign_in/btn_sign_up_button.dart';
+import 'package:bee_app/screens/sign_in/email_address.dart';
+import 'package:bee_app/screens/sign_in/password.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-class SignInWidget extends StatefulWidget {
+class SignIn extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _SignInWidgetState();
+  State<StatefulWidget> createState() => _SignInState();
 }
 
-class _SignInWidgetState extends State<SignInWidget>
-    with TickerProviderStateMixin {
+class _SignInState extends State<SignIn> with TickerProviderStateMixin {
   AnimationController appLogoAnimationController;
   AnimationController emailAddressAnimationController;
   AnimationController passwordAnimationController;

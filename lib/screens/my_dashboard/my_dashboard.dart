@@ -1,17 +1,17 @@
-import 'package:bee_app/screens/my_dashboard_widget/item_menu.dart';
-import 'package:bee_app/screens/my_dashboard_widget/item_menu_three.dart';
-import 'package:bee_app/screens/my_dashboard_widget/item_menu_two.dart';
-import 'package:bee_app/screens/my_dashboard_widget/main_menus_text.dart';
-import 'package:bee_app/screens/my_dashboard_widget/recent_transaction.dart';
+import 'package:bee_app/screens/my_dashboard/item_menu.dart';
+import 'package:bee_app/screens/my_dashboard/item_menu_three.dart';
+import 'package:bee_app/screens/my_dashboard/item_menu_two.dart';
+import 'package:bee_app/screens/my_dashboard/main_menus_text.dart';
+import 'package:bee_app/screens/my_dashboard/recent_transaction.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-class MyDashboardWidget extends StatefulWidget {
+class MyDashboard extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MyDashboardWidgetState();
+  State<StatefulWidget> createState() => _MyDashboardState();
 }
 
-class _MyDashboardWidgetState extends State<MyDashboardWidget>
+class _MyDashboardState extends State<MyDashboard>
     with TickerProviderStateMixin {
   AnimationController headerAnimationController;
   AnimationController cardAnimationController;

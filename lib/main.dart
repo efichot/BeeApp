@@ -1,11 +1,11 @@
-import 'package:bee_app/screens/contacts_widget/contacts_widget.dart';
-import 'package:bee_app/screens/get_started_widget/get_started_widget.dart';
-import 'package:bee_app/screens/my_dashboard_widget/my_dashboard_widget.dart';
-import 'package:bee_app/screens/send_money_widget/send_money_widget.dart';
-import 'package:bee_app/screens/sign_in_widget/sign_in_widget.dart';
-import 'package:bee_app/screens/sign_up_widget/sign_up_widget.dart';
-import 'package:bee_app/screens/success_send_widget/success_send_widget.dart';
-import 'package:bee_app/screens/success_sign_in_widget/success_sign_in_widget.dart';
+import 'package:bee_app/screens/contacts/contacts.dart';
+import 'package:bee_app/screens/get_started/get_started.dart';
+import 'package:bee_app/screens/my_dashboard/my_dashboard.dart';
+import 'package:bee_app/screens/send_money/send_money.dart';
+import 'package:bee_app/screens/sign_in/sign_in.dart';
+import 'package:bee_app/screens/sign_up/sign_up.dart';
+import 'package:bee_app/screens/success_send/success_send.dart';
+import 'package:bee_app/screens/success_sign_in/success_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,14 +20,14 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         routes: {
-          '/GetStarted': (context) => GetStartedWidget(),
-          '/SignIn': (context) => SignInWidget(),
-          '/SignUp': (context) => SignUpWidget(),
-          '/SuccessSignIn': (context) => SuccessSignInWidget(),
-          '/MyDashboard': (context) => MyDashboardWidget(),
-          '/SendMoney': (context) => SendMoneyWidget(),
-          '/Contacts': (context) => ContactsWidget(),
-          '/SuccessSend': (context) => SuccessSendWidget(),
+          '/GetStarted': (context) => GetStarted(),
+          '/SignIn': (context) => SignIn(),
+          '/SignUp': (context) => SignUp(),
+          '/SuccessSignIn': (context) => SuccessSignIn(),
+          '/MyDashboard': (context) => MyDashboard(),
+          '/SendMoney': (context) => SendMoney(),
+          '/Contacts': (context) => Contacts(),
+          '/SuccessSend': (context) => SuccessSend(),
         },
         initialRoute: '/GetStarted',
         debugShowCheckedModeBanner: false,

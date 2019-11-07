@@ -1,13 +1,12 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-class ContactsWidget extends StatefulWidget {
+class Contacts extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _ContactsWidgetState();
+  State<StatefulWidget> createState() => _ContactsState();
 }
 
-class _ContactsWidgetState extends State<ContactsWidget>
-    with TickerProviderStateMixin {
+class _ContactsState extends State<Contacts> with TickerProviderStateMixin {
   AnimationController headerAnimationController;
   AnimationController friendsAnimationController;
 

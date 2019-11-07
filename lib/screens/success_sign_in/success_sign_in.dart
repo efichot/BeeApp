@@ -1,15 +1,15 @@
-import 'package:bee_app/screens/success_sign_in_widget/btn_dashboard_button.dart';
-import 'package:bee_app/screens/success_sign_in_widget/icon_user.dart';
-import 'package:bee_app/screens/success_sign_in_widget/view_two.dart';
+import 'package:bee_app/screens/success_sign_in/btn_dashboard_button.dart';
+import 'package:bee_app/screens/success_sign_in/icon_user.dart';
+import 'package:bee_app/screens/success_sign_in/view_two.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-class SuccessSignInWidget extends StatefulWidget {
+class SuccessSignIn extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _SuccessSignInWidgetState();
+  State<StatefulWidget> createState() => _SuccessSignInState();
 }
 
-class _SuccessSignInWidgetState extends State<SuccessSignInWidget>
+class _SuccessSignInState extends State<SuccessSignIn>
     with TickerProviderStateMixin {
   AnimationController iconUserAnimationController;
   AnimationController viewTwoAnimationController;

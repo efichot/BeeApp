@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SendMoneyWidget extends StatelessWidget {
+class SendMoney extends StatelessWidget {
   void onItemPressed(BuildContext context) =>
       Navigator.pushNamed(context, '/Contacts');
 
