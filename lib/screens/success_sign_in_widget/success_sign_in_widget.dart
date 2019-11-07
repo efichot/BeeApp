@@ -1,6 +1,6 @@
-import 'package:bee_app/success_sign_in_widget/btn_dashboard_button.dart';
-import 'package:bee_app/success_sign_in_widget/icon_user.dart';
-import 'package:bee_app/success_sign_in_widget/view_two.dart';
+import 'package:bee_app/screens/success_sign_in_widget/btn_dashboard_button.dart';
+import 'package:bee_app/screens/success_sign_in_widget/icon_user.dart';
+import 'package:bee_app/screens/success_sign_in_widget/view_two.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 

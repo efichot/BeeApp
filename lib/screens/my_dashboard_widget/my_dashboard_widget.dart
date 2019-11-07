@@ -1,8 +1,8 @@
-import 'package:bee_app/my_dashboard_widget/item_menu.dart';
-import 'package:bee_app/my_dashboard_widget/item_menu_three.dart';
-import 'package:bee_app/my_dashboard_widget/item_menu_two.dart';
-import 'package:bee_app/my_dashboard_widget/main_menus_text.dart';
-import 'package:bee_app/my_dashboard_widget/recent_transaction.dart';
+import 'package:bee_app/screens/my_dashboard_widget/item_menu.dart';
+import 'package:bee_app/screens/my_dashboard_widget/item_menu_three.dart';
+import 'package:bee_app/screens/my_dashboard_widget/item_menu_two.dart';
+import 'package:bee_app/screens/my_dashboard_widget/main_menus_text.dart';
+import 'package:bee_app/screens/my_dashboard_widget/recent_transaction.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 

@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>bee_app</title>
+  <link rel="icon" href="/assets/images/favicon.ico">
 </head>
 <body>
   <script src="main.dart.js" type="application/javascript"></script>
-  <script src="/__/firebase/7.2.3/firebase-app.js"></script>
-  <script src="/__/firebase/7.2.3/firebase-analytics.js"></script>
-  <script src="/__/firebase/7.2.3/firebase-messaging.js"></script>
-  <script src="/__/firebase/7.2.3/firebase-storage.js"></script>
-  <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
-  <script src="/__/firebase/7.2.3/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
   <script>
     var config = {
         apiKey: "AIzaSyCfLPlG3uk4_CrmnozYxi7Q-Sb5IaFaRXk",
@@ -24,7 +25,25 @@
         measurementId: "G-K5QJDNWQ5B"
       }
     firebase.initializeApp(config);
+    //FA
     firebase.analytics();
+    //FCM
+    const messaging = firebase.messaging()
+
+      messaging
+        .requestPermission()
+        .then(() => {
+          console.log('Have Permission')
+          return messaging.getToken()
+        })
+        .then(token => {
+          console.log(token)
+        })
+        .catch(console.log('Error Occured'))
+
+      messaging.onMessage(payload => {
+        console.log('Message received. ', payload)
+      })
   </script>
 </body>
 </html>

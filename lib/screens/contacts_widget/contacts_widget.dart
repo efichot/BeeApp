@@ -187,18 +187,21 @@ class _ContactsWidgetState extends State<ContactsWidget>
                           child: Container(),
                         ),
                       ),
-                      Positioned(
-                        left: 18,
-                        right: 18,
-                        child: Text(
-                          "ADD",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 11,
-                            fontFamily: "",
-                            fontWeight: FontWeight.w500,
+                      Container(
+                        width: 61,
+                        height: 22,
+                        child: FlatButton(
+                          onPressed: () => this.onBtnSendPressed(context),
+                          textColor: Color.fromARGB(255, 255, 255, 255),
+                          child: Text(
+                            "ADD",
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontFamily: "",
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],

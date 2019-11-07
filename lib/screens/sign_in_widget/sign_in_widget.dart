@@ -1,7 +1,7 @@
-import 'package:bee_app/sign_in_widget/btn_sign_in_button.dart';
-import 'package:bee_app/sign_in_widget/btn_sign_up_button.dart';
-import 'package:bee_app/sign_in_widget/email_address.dart';
-import 'package:bee_app/sign_in_widget/password.dart';
+import 'package:bee_app/screens/sign_in_widget/btn_sign_in_button.dart';
+import 'package:bee_app/screens/sign_in_widget/btn_sign_up_button.dart';
+import 'package:bee_app/screens/sign_in_widget/email_address.dart';
+import 'package:bee_app/screens/sign_in_widget/password.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 

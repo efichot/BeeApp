@@ -1,11 +1,11 @@
-import 'package:bee_app/contacts_widget/contacts_widget.dart';
-import 'package:bee_app/get_started_widget/get_started_widget.dart';
-import 'package:bee_app/my_dashboard_widget/my_dashboard_widget.dart';
-import 'package:bee_app/send_money_widget/send_money_widget.dart';
-import 'package:bee_app/sign_in_widget/sign_in_widget.dart';
-import 'package:bee_app/sign_up_widget/sign_up_widget.dart';
-import 'package:bee_app/success_send_widget/success_send_widget.dart';
-import 'package:bee_app/success_sign_in_widget/success_sign_in_widget.dart';
+import 'package:bee_app/screens/contacts_widget/contacts_widget.dart';
+import 'package:bee_app/screens/get_started_widget/get_started_widget.dart';
+import 'package:bee_app/screens/my_dashboard_widget/my_dashboard_widget.dart';
+import 'package:bee_app/screens/send_money_widget/send_money_widget.dart';
+import 'package:bee_app/screens/sign_in_widget/sign_in_widget.dart';
+import 'package:bee_app/screens/sign_up_widget/sign_up_widget.dart';
+import 'package:bee_app/screens/success_send_widget/success_send_widget.dart';
+import 'package:bee_app/screens/success_sign_in_widget/success_sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
