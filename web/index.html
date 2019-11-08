@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>bee_app</title>
   <link rel="icon" href="/assets/images/favicon.ico">
+  <script defer src="/assets/js/vanillatoasts.js"></script>
+  <link href="/assets/css/vanillatoasts.css" rel="stylesheet" />
 </head>
 <body>
   <script src="main.dart.js" type="application/javascript"></script>
@@ -43,6 +45,13 @@
 
     messaging.onMessage(payload => {
       console.log('Message received. ', payload)
+      VanillaToasts.create({
+        icon: payload.notification.image,
+        title: payload.notification.title,
+        text: payload.notification.body,
+        timeout: 5000,
+        callback: () => { toast.hide() }
+      });
     })
   </script>
 </body>
