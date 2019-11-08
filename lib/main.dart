@@ -8,6 +8,7 @@ import 'package:bee_app/screens/success_send/success_send.dart';
 import 'package:bee_app/screens/success_sign_in/success_sign_in.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(App());
@@ -34,10 +35,28 @@ class App extends StatelessWidget {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print('on message $message');
-        print(message["notification"]["title"]);
-        final snackBar =
-            SnackBar(content: Text(message["notification"]["title"]));
-        Scaffold.of(context).showSnackBar(snackBar);
+        showOverlayNotification((context) {
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            child: SafeArea(
+              child: ListTile(
+                leading: SizedBox.fromSize(
+                    size: const Size(40, 40),
+                    child: ClipOval(
+                        child: Image.asset(
+                      "assets/images/icon-card-success.png",
+                    ))),
+                title: Text(message["notification"]["title"]),
+                subtitle: Text(message["notification"]["body"]),
+                trailing: IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () {
+                      OverlaySupportEntry.of(context).dismiss();
+                    }),
+              ),
+            ),
+          );
+        }, duration: Duration(milliseconds: 4000));
       },
       onResume: (Map<String, dynamic> message) async {
         print('on resume $message');
@@ -51,19 +70,21 @@ class App extends StatelessWidget {
       providers: [
         Provider<bool>.value(value: identical(0, 0.0)),
       ],
-      child: MaterialApp(
-        routes: {
-          '/GetStarted': (context) => GetStarted(),
-          '/SignIn': (context) => SignIn(),
-          '/SignUp': (context) => SignUp(),
-          '/SuccessSignIn': (context) => SuccessSignIn(),
-          '/MyDashboard': (context) => MyDashboard(),
-          '/SendMoney': (context) => SendMoney(),
-          '/Contacts': (context) => Contacts(),
-          '/SuccessSend': (context) => SuccessSend(),
-        },
-        initialRoute: '/GetStarted',
-        debugShowCheckedModeBanner: false,
+      child: OverlaySupport(
+        child: MaterialApp(
+          routes: {
+            '/GetStarted': (context) => GetStarted(),
+            '/SignIn': (context) => SignIn(),
+            '/SignUp': (context) => SignUp(),
+            '/SuccessSignIn': (context) => SuccessSignIn(),
+            '/MyDashboard': (context) => MyDashboard(),
+            '/SendMoney': (context) => SendMoney(),
+            '/Contacts': (context) => Contacts(),
+            '/SuccessSend': (context) => SuccessSend(),
+          },
+          initialRoute: '/GetStarted',
+          debugShowCheckedModeBanner: false,
+        ),
       ),
     );
   }

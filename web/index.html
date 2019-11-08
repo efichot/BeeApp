@@ -30,20 +30,20 @@
     //FCM
     const messaging = firebase.messaging()
 
-      messaging
-        .requestPermission()
-        .then(() => {
-          console.log('Have Permission')
-          return messaging.getToken()
-        })
-        .then(token => {
-          console.log(token)
-        })
-        .catch(console.log('Error Occured'))
-
-      messaging.onMessage(payload => {
-        console.log('Message received. ', payload)
+    messaging
+      .requestPermission()
+      .then(() => {
+        console.log('Have Permission')
+        return messaging.getToken()
       })
+      .then(token => {
+        console.log(token)
+      })
+      .catch(console.log('Error Occured'))
+
+    messaging.onMessage(payload => {
+      console.log('Message received. ', payload)
+    })
   </script>
 </body>
 </html>

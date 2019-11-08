@@ -17,6 +17,7 @@ dependencies:
   cloud_firestore: ^0.12.9+6
   firebase_messaging: ^5.1.6
   firebase_storage: ^3.0.6
+  overlay_support: ^1.0.2
 
 dev_dependencies:
   flutter_test:
