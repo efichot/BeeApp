@@ -20,8 +20,14 @@ dependencies:
   overlay_support: ^1.0.2
 
 dev_dependencies:
+  flutter_launcher_icons:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  image_path: "icon.png"
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
