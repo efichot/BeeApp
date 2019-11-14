@@ -9,7 +9,7 @@ Implementation of an ultimate boilerplate with TS and expo for implementing desi
 
 # Imformations
 
-- For changing the icon just replace the icon.png and run:
+- For changing the icon just replace the /assets/images/icon.png and run:
   ```
   flutter pub run flutter_launcher_icons:main
   ```
