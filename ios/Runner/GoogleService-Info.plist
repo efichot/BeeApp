@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>343942339205-dd5q5eghk88a258ak7mfbcelb3f2ualv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.343942339205-dd5q5eghk88a258ak7mfbcelb3f2ualv</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>343942339205-4mlvsbbdi4hgap5knq29vh044fh28fsb.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBAtHE7xdGjm72XZ4AxdiFX3Zmw_u_yX58</string>
+	<key>GCM_SENDER_ID</key>
+	<string>343942339205</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.beeApp</string>
+	<key>PROJECT_ID</key>
+	<string>beeapp-af1c3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>beeapp-af1c3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:343942339205:ios:f5d19ae04b455805e167ec</string>
+	<key>DATABASE_URL</key>
+	<string>https://beeapp-af1c3.firebaseio.com</string>
+</dict>
+</plist>
