@@ -2,7 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-notifications(context) {
+messaging(context) {
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   void iosPermission() {
     _firebaseMessaging.requestNotificationPermissions(

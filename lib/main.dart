@@ -6,7 +6,7 @@ import 'package:bee_app/screens/sign_in/sign_in.dart';
 import 'package:bee_app/screens/sign_up/sign_up.dart';
 import 'package:bee_app/screens/success_send/success_send.dart';
 import 'package:bee_app/screens/success_sign_in/success_sign_in.dart';
-import 'package:bee_app/services/notifications.dart';
+import 'package:bee_app/services/messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +16,7 @@ void main() => runApp(App());
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    notifications(context); // In-app notifications on mobile
+    messaging(context); // In-app notifications on mobile
 
     return MultiProvider(
       providers: [
