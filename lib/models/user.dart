@@ -13,3 +13,15 @@ class InfoUser {
   final String photoUrl;
   final String displayName;
 }
+
+InfoUser userFromFirebase(user) {
+  if (user == null) {
+    return null;
+  }
+  return InfoUser(
+    uid: user.uid,
+    email: user.email,
+    displayName: user.displayName,
+    // photoUrl: user.photoUrl,
+  );
+}

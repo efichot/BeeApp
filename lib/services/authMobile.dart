@@ -6,25 +6,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  InfoUser _userFromFirebase(user) {
-    if (user == null) {
-      return null;
-    }
-    return InfoUser(
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoUrl: user.photoUrl,
-    );
-  }
-
   Stream<InfoUser> get onAuthStateChanged {
-    return _firebaseAuth.onAuthStateChanged.map(_userFromFirebase);
+    return _firebaseAuth.onAuthStateChanged.map(userFromFirebase);
   }
 
   Future<InfoUser> signInAnonymously() async {
     final AuthResult authResult = await _firebaseAuth.signInAnonymously();
-    return _userFromFirebase(authResult.user);
+    return userFromFirebase(authResult.user);
   }
 
   Future<InfoUser> signInWithEmailAndPassword(
@@ -34,14 +22,14 @@ class AuthService {
       email: email,
       password: password,
     );
-    return _userFromFirebase(authResult.user);
+    return userFromFirebase(authResult.user);
   }
 
   Future<InfoUser> createUserWithEmailAndPassword(
       String email, String password) async {
     final AuthResult authResult = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
-    return _userFromFirebase(authResult.user);
+    return userFromFirebase(authResult.user);
   }
 
   Future<void> sendPasswordResetEmail(String email) async {
@@ -61,7 +49,7 @@ class AuthService {
           idToken: googleAuth.idToken,
           accessToken: googleAuth.accessToken,
         ));
-        return _userFromFirebase(authResult.user);
+        return userFromFirebase(authResult.user);
       } else {
         throw PlatformException(
             code: 'ERROR_MISSING_GOOGLE_AUTH_TOKEN',
@@ -75,7 +63,7 @@ class AuthService {
 
   Future<InfoUser> currentUser() async {
     final FirebaseUser user = await _firebaseAuth.currentUser();
-    return _userFromFirebase(user);
+    return userFromFirebase(user);
   }
 
   Future<void> signOut() async {

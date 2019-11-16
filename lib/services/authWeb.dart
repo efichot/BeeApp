@@ -4,25 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  InfoUser _userFromFirebase(user) {
-    if (user == null) {
-      return null;
-    }
-    return InfoUser(
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      // photoUrl: user.photoUrl,
-    );
-  }
-
   Stream<InfoUser> get onAuthStateChanged {
-    return auth().onAuthStateChanged.map(_userFromFirebase);
+    return auth().onAuthStateChanged.map(userFromFirebase);
   }
 
   Future<InfoUser> signInAnonymously() async {
     final UserCredential authResult = await auth().signInAnonymously();
-    return _userFromFirebase(authResult.user);
+    return userFromFirebase(authResult.user);
   }
 
   Future<InfoUser> signInWithEmailAndPassword(
@@ -31,14 +19,14 @@ class AuthService {
       email,
       password,
     );
-    return _userFromFirebase(authResult.user);
+    return userFromFirebase(authResult.user);
   }
 
   Future<InfoUser> createUserWithEmailAndPassword(
       String email, String password) async {
     final UserCredential authResult =
         await auth().createUserWithEmailAndPassword(email, password);
-    return _userFromFirebase(authResult.user);
+    return userFromFirebase(authResult.user);
   }
 
   Future<void> sendPasswordResetEmail(String email) async {
@@ -58,7 +46,7 @@ class AuthService {
           googleAuth.idToken,
           googleAuth.accessToken,
         ));
-        return _userFromFirebase(authResult.user);
+        return userFromFirebase(authResult.user);
       } else {
         throw PlatformException(
             code: 'ERROR_MISSING_GOOGLE_AUTH_TOKEN',
@@ -72,7 +60,7 @@ class AuthService {
 
   InfoUser currentUser() {
     final User user = auth().currentUser;
-    return _userFromFirebase(user);
+    return userFromFirebase(user);
   }
 
   Future<void> signOut() async {
