@@ -19,6 +19,7 @@ dependencies:
   firebase_storage: ^3.0.6
   overlay_support: ^1.0.2
   firebase: ^6.0.0
+  google_sign_in: ^4.0.14
 
 dev_dependencies:
   flutter_launcher_icons:

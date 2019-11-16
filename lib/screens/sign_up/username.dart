@@ -3,7 +3,10 @@ import 'package:supernova_flutter_ui_toolkit/keyframes.dart';
 import 'package:supernova_flutter_ui_toolkit/transitions.dart';
 
 class username extends StatelessWidget {
-  username({Key key, AnimationController usernameAnimationController})
+  username(
+      {Key key,
+      AnimationController usernameAnimationController,
+      TextEditingController usernameController})
       : translateY = Interpolation<double>(keyframes: [
           Keyframe<double>(fraction: 0, value: 0),
           Keyframe<double>(fraction: 0.001, value: 200),
@@ -20,9 +23,11 @@ class username extends StatelessWidget {
           parent: usernameAnimationController,
           curve: Interval(0, 1, curve: Cubic(0.42, 0, 0.58, 1)),
         )),
+        usernameController = usernameController,
         super(key: key);
   Animation<double> translateY;
   Animation<double> opacity;
+  TextEditingController usernameController;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +81,7 @@ class username extends StatelessWidget {
                       width: 286,
                       height: 60,
                       child: TextField(
+                        controller: usernameController,
                         decoration: InputDecoration(
                           hintText: "anggarisky",
                           hintStyle: TextStyle(

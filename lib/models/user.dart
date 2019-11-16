@@ -4,8 +4,8 @@ class InfoUser {
   const InfoUser({
     @required this.uid,
     this.email,
-    this.photoUrl,
     this.displayName,
+    this.photoUrl,
   });
 
   final String uid;

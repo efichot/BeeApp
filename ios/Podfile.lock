@@ -214,13 +214,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
-  cloud_firestore: 2d82a8ddea1ac2f535ec891ed68b5975fe4f9509
+  cloud_firestore: 187530401afa261d255791ea75580591e345fa7b
   Firebase: da031bc7012374e3bed17a6731b89327b29863b9
-  firebase_analytics: 045e7ebe7b8a4d27357168072868ff082dca15a6
-  firebase_auth: 1e3b7bdd37b9fbd4ef75ba1d985b00be09e02d3d
-  firebase_core: ae55ea92448ec8675d325da4db22cf3b4d58a54d
-  firebase_messaging: 0d5c04cc40f58bd4bf7f2992c91050f9bc01bec3
-  firebase_storage: 52b0c06e27af628b627be28d32b4b540f6b67cf7
+  firebase_analytics: 2f3ab38886ff9d915b076d5aae2f964dc5ce7549
+  firebase_auth: d99b993c1405096e66c58211b1cd956c23eed1c5
+  firebase_core: 77196106dc5f61b425f58b2f8f050347db10e4e0
+  firebase_messaging: b8543d17dd9825f4f24a585477f77db103e5228e
+  firebase_storage: d83bfc0e0e849b2f871a34c474466bf5014ff304
   FirebaseAnalytics: 4e53a7eb7b76bc703c4d9239bc964545e9b23361
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
   FirebaseAuth: b401a012cc33b04df3b52bb308b04e8766f2693e

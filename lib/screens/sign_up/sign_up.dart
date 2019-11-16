@@ -1,9 +1,12 @@
+import 'package:bee_app/models/user.dart';
 import 'package:bee_app/screens/sign_up/btn_sign_in_button.dart';
 import 'package:bee_app/screens/sign_up/btn_sign_up_button.dart';
 import 'package:bee_app/screens/sign_up/btn_sign_up_with_google_button.dart';
 import 'package:bee_app/screens/sign_up/email_address.dart';
 import 'package:bee_app/screens/sign_up/password.dart';
 import 'package:bee_app/screens/sign_up/username.dart';
+import 'package:bee_app/services/authMobile.dart'
+    if (dart.library.html) 'package:bee_app/services/authWeb.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +23,9 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
   AnimationController btnSignUpButtonAnimationController;
   AnimationController btnSignInButtonAnimationController;
   AnimationController btnSignUpWithGoogleButtonAnimationController;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -56,13 +62,21 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
     this.btnSignUpWithGoogleButtonAnimationController.dispose();
   }
 
-  void onBtnGetStartedPressed(BuildContext context) =>
+  void onBtnGetStartedPressed(String email, String password) async {
+    InfoUser user =
+        await AuthService().createUserWithEmailAndPassword(email, password);
+    if (user != null) {
       Navigator.pushNamed(context, '/MyDashboard');
+    }
+  }
 
   void onBtnGetStartedTwoPressed(BuildContext context) =>
       Navigator.pushNamed(context, '/SignIn');
 
-  void onBtnGetStartedThreePressed(BuildContext context) {}
+  void onBtnGetStartedThreePressed(BuildContext context) async {
+    InfoUser user = await AuthService().signInWithGoogle();
+    print(user);
+  }
 
   void startAnimationOne() {
     this.appLogoAnimationController.forward();
@@ -127,6 +141,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
               margin: EdgeInsets.only(top: 68),
               child: username(
                 usernameAnimationController: this.usernameAnimationController,
+                usernameController: this.usernameController,
               ),
             ),
             Container(
@@ -135,6 +150,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
               margin: EdgeInsets.only(top: 30),
               child: password(
                 passwordAnimationController: this.passwordAnimationController,
+                passwordController: this.passwordController,
               ),
             ),
             Container(
@@ -144,6 +160,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
               child: emailAddress(
                 emailAddressAnimationController:
                     this.emailAddressAnimationController,
+                emailController: this.emailController,
               ),
             ),
             Spacer(),
@@ -152,8 +169,8 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
               height: 45,
               margin: EdgeInsets.only(bottom: 6),
               child: btnSignUpButton(
-                onBtnGetStartedPressed: () =>
-                    this.onBtnGetStartedPressed(context),
+                onBtnGetStartedPressed: () => this.onBtnGetStartedPressed(
+                    this.emailController.text, this.passwordController.text),
                 btnSignUpButtonAnimationController:
                     this.btnSignUpButtonAnimationController,
               ),
