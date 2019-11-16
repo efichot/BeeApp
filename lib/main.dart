@@ -19,9 +19,7 @@ class App extends StatelessWidget {
     messaging(context); // In-app notifications on mobile
 
     return MultiProvider(
-      providers: [
-        Provider<bool>.value(value: identical(0, 0.0)),
-      ],
+      providers: [],
       child: OverlaySupport(
         child: MaterialApp(
           routes: {
