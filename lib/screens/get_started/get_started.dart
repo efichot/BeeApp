@@ -1,7 +1,9 @@
+import 'package:bee_app/models/user.dart';
 import 'package:bee_app/screens/get_started/btn_get_started_button.dart';
 import 'package:bee_app/screens/get_started/send_money_to_friend_text.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GetStarted extends StatefulWidget {
   @override
@@ -47,6 +49,7 @@ class _GetStartedState extends State<GetStarted> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    print(Provider.of<InfoUser>(context));
     return Scaffold(
       body: Container(
         constraints: BoxConstraints.expand(),
