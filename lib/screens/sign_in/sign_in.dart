@@ -63,6 +63,7 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(

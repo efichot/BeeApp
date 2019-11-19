@@ -1,3 +1,4 @@
+import 'package:bee_app/components/signout_button.dart';
 import 'package:flutter/material.dart';
 
 class SendMoney extends StatelessWidget {
@@ -92,6 +93,7 @@ class SendMoney extends StatelessWidget {
                               ),
                             ),
                           ),
+                          SignOut(),
                         ],
                       ),
                     ),

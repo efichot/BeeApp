@@ -1,6 +1,5 @@
 import 'package:bee_app/models/user.dart';
 import 'package:firebase/firebase.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   Stream<InfoUser> get onAuthStateChanged {
@@ -44,8 +43,6 @@ class AuthService {
   }
 
   Future<void> signOut() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    await googleSignIn.signOut();
     return auth().signOut();
   }
 }

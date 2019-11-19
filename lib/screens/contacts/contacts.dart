@@ -1,3 +1,4 @@
+import 'package:bee_app/components/signout_button.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class _ContactsState extends State<Contacts> with TickerProviderStateMixin {
   }
 
   void onBtnSendPressed(BuildContext context) =>
-      Navigator.pushNamed(context, '/MyDashboard');
+      Navigator.pushNamed(context, '/SendMoney');
 
   void startAnimationOne() {
     this.headerAnimationController.forward();
@@ -225,9 +226,9 @@ class _ContactsState extends State<Contacts> with TickerProviderStateMixin {
           alignment: Alignment.topCenter,
           children: [
             Positioned(
-              left: -35,
+              left: 0,
               top: 21,
-              right: -89,
+              right: 0,
               child: Container(
                 height: 120,
                 child: Stack(
@@ -292,6 +293,7 @@ class _ContactsState extends State<Contacts> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
+                    SignOut()
                   ],
                 ),
               ),

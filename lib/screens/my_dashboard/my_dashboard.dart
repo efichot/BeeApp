@@ -1,3 +1,4 @@
+import 'package:bee_app/components/signout_button.dart';
 import 'package:bee_app/screens/my_dashboard/item_menu.dart';
 import 'package:bee_app/screens/my_dashboard/item_menu_three.dart';
 import 'package:bee_app/screens/my_dashboard/item_menu_two.dart';
@@ -155,6 +156,7 @@ class _MyDashboardState extends State<MyDashboard>
                               ),
                             ),
                           ),
+                          SignOut()
                         ],
                       ),
                     ),
