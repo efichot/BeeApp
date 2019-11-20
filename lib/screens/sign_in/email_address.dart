@@ -3,7 +3,10 @@ import 'package:supernova_flutter_ui_toolkit/keyframes.dart';
 import 'package:supernova_flutter_ui_toolkit/transitions.dart';
 
 class emailAddress extends StatelessWidget {
-  emailAddress({Key key, AnimationController emailAddressAnimationController})
+  emailAddress(
+      {Key key,
+      AnimationController emailAddressAnimationController,
+      TextEditingController emailController})
       : translateY = Interpolation<double>(keyframes: [
           Keyframe<double>(fraction: 0, value: 0),
           Keyframe<double>(fraction: 0.001, value: 200),
@@ -20,9 +23,11 @@ class emailAddress extends StatelessWidget {
           parent: emailAddressAnimationController,
           curve: Interval(0, 1, curve: Cubic(0.42, 0, 0.58, 1)),
         )),
+        emailController = emailController,
         super(key: key);
   Animation<double> translateY;
   Animation<double> opacity;
+  TextEditingController emailController;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +81,7 @@ class emailAddress extends StatelessWidget {
                       width: 293,
                       height: 60,
                       child: TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: "a@bcd.com",
                           hintStyle: TextStyle(

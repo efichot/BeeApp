@@ -3,7 +3,10 @@ import 'package:supernova_flutter_ui_toolkit/keyframes.dart';
 import 'package:supernova_flutter_ui_toolkit/transitions.dart';
 
 class password extends StatelessWidget {
-  password({Key key, AnimationController passwordAnimationController})
+  password(
+      {Key key,
+      AnimationController passwordAnimationController,
+      TextEditingController passwordController})
       : translateY = Interpolation<double>(keyframes: [
           Keyframe<double>(fraction: 0, value: 0),
           Keyframe<double>(fraction: 0.001, value: 200),
@@ -20,9 +23,11 @@ class password extends StatelessWidget {
           parent: passwordAnimationController,
           curve: Interval(0, 1, curve: Cubic(0.42, 0, 0.58, 1)),
         )),
+        passwordController = passwordController,
         super(key: key);
   Animation<double> translateY;
   Animation<double> opacity;
+  TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +81,7 @@ class password extends StatelessWidget {
                       width: 291,
                       height: 60,
                       child: TextField(
+                        controller: passwordController,
                         decoration: InputDecoration(
                           hintText: "iscomicsansgood",
                           hintStyle: TextStyle(

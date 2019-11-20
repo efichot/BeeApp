@@ -62,11 +62,26 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
     this.btnSignUpWithGoogleButtonAnimationController.dispose();
   }
 
-  void onBtnGetStartedPressed(String email, String password) async {
-    InfoUser user =
-        await AuthService().createUserWithEmailAndPassword(email, password);
-    if (user != null) {
-      Navigator.pushNamed(context, '/MyDashboard');
+  void onBtnGetStartedPressed(
+      String email, String password, BuildContext context) async {
+    try {
+      InfoUser user =
+          await AuthService().createUserWithEmailAndPassword(email, password);
+      if (user != null) {
+        Navigator.pushNamed(context, '/MyDashboard');
+      }
+    } catch (e) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.message),
+          action: SnackBarAction(
+            label: 'Retry',
+            onPressed: () {
+              onBtnGetStartedPressed(email, password, context);
+            },
+          ),
+        ),
+      );
     }
   }
 
@@ -74,8 +89,24 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
       Navigator.pushNamed(context, '/SignIn');
 
   void onBtnGetStartedThreePressed(BuildContext context) async {
-    InfoUser user = await AuthService().signInWithGoogle();
-    print(user);
+    try {
+      InfoUser user = await AuthService().signInWithGoogle();
+      if (user != null) {
+        Navigator.pushNamed(context, '/MyDashboard');
+      }
+    } catch (e) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.message),
+          action: SnackBarAction(
+            label: 'Retry',
+            onPressed: () {
+              onBtnGetStartedThreePressed(context);
+            },
+          ),
+        ),
+      );
+    }
   }
 
   void startAnimationOne() {
@@ -97,109 +128,113 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 27, 19, 63),
         ),
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                width: 60,
-                height: 80,
-                margin: EdgeInsets.only(left: 20, top: 8),
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Positioned(
-                      left: 0,
-                      top: 20,
-                      right: -0,
-                      child: Container(
-                        height: 60,
-                        child: Image.asset(
-                          "assets/images/rectangle-copy-4.png",
-                          fit: BoxFit.none,
+        child: Builder(builder: (context) {
+          return Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  width: 60,
+                  height: 80,
+                  margin: EdgeInsets.only(left: 20, top: 8),
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 20,
+                        right: -0,
+                        child: Container(
+                          height: 60,
+                          child: Image.asset(
+                            "assets/images/rectangle-copy-4.png",
+                            fit: BoxFit.none,
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      right: 0,
-                      child: Container(
-                        height: 59,
-                        child: Image.asset(
-                          "assets/images/rectangle-3.png",
-                          fit: BoxFit.none,
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          height: 59,
+                          child: Image.asset(
+                            "assets/images/rectangle-3.png",
+                            fit: BoxFit.none,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Container(
-              width: 312,
-              height: 77,
-              margin: EdgeInsets.only(top: 68),
-              child: username(
-                usernameAnimationController: this.usernameAnimationController,
-                usernameController: this.usernameController,
+              Container(
+                width: 312,
+                height: 77,
+                margin: EdgeInsets.only(top: 68),
+                child: username(
+                  usernameAnimationController: this.usernameAnimationController,
+                  usernameController: this.usernameController,
+                ),
               ),
-            ),
-            Container(
-              width: 312,
-              height: 77,
-              margin: EdgeInsets.only(top: 30),
-              child: password(
-                passwordAnimationController: this.passwordAnimationController,
-                passwordController: this.passwordController,
+              Container(
+                width: 312,
+                height: 77,
+                margin: EdgeInsets.only(top: 30),
+                child: password(
+                  passwordAnimationController: this.passwordAnimationController,
+                  passwordController: this.passwordController,
+                ),
               ),
-            ),
-            Container(
-              width: 312,
-              height: 77,
-              margin: EdgeInsets.only(top: 30),
-              child: emailAddress(
-                emailAddressAnimationController:
-                    this.emailAddressAnimationController,
-                emailController: this.emailController,
+              Container(
+                width: 312,
+                height: 77,
+                margin: EdgeInsets.only(top: 30),
+                child: emailAddress(
+                  emailAddressAnimationController:
+                      this.emailAddressAnimationController,
+                  emailController: this.emailController,
+                ),
               ),
-            ),
-            Spacer(),
-            Container(
-              width: 270,
-              height: 45,
-              margin: EdgeInsets.only(bottom: 6),
-              child: btnSignUpButton(
-                onBtnGetStartedPressed: () => this.onBtnGetStartedPressed(
-                    this.emailController.text, this.passwordController.text),
-                btnSignUpButtonAnimationController:
-                    this.btnSignUpButtonAnimationController,
+              Spacer(),
+              Container(
+                width: 270,
+                height: 45,
+                margin: EdgeInsets.only(bottom: 6),
+                child: btnSignUpButton(
+                  onBtnGetStartedPressed: () => this.onBtnGetStartedPressed(
+                      this.emailController.text,
+                      this.passwordController.text,
+                      context),
+                  btnSignUpButtonAnimationController:
+                      this.btnSignUpButtonAnimationController,
+                ),
               ),
-            ),
-            Container(
-              width: 270,
-              height: 45,
-              margin: EdgeInsets.only(bottom: 6),
-              child: btnSignInButton(
-                onBtnGetStartedTwoPressed: () =>
-                    this.onBtnGetStartedTwoPressed(context),
-                btnSignInButtonAnimationController:
-                    this.btnSignInButtonAnimationController,
+              Container(
+                width: 270,
+                height: 45,
+                margin: EdgeInsets.only(bottom: 6),
+                child: btnSignInButton(
+                  onBtnGetStartedTwoPressed: () =>
+                      this.onBtnGetStartedTwoPressed(context),
+                  btnSignInButtonAnimationController:
+                      this.btnSignInButtonAnimationController,
+                ),
               ),
-            ),
-            Container(
-              width: 270,
-              height: 45,
-              margin: EdgeInsets.only(bottom: 18),
-              child: btnSignUpWithGoogleButton(
-                onBtnGetStartedThreePressed: () =>
-                    this.onBtnGetStartedThreePressed(context),
-                btnSignUpWithGoogleButtonAnimationController:
-                    this.btnSignUpWithGoogleButtonAnimationController,
+              Container(
+                width: 270,
+                height: 45,
+                margin: EdgeInsets.only(bottom: 18),
+                child: btnSignUpWithGoogleButton(
+                  onBtnGetStartedThreePressed: () =>
+                      this.onBtnGetStartedThreePressed(context),
+                  btnSignUpWithGoogleButtonAnimationController:
+                      this.btnSignUpWithGoogleButtonAnimationController,
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          );
+        }),
       ),
     );
   }
