@@ -37,8 +37,8 @@ class AuthService {
     return userFromFirebase(authResult.user);
   }
 
-  InfoUser currentUser() {
-    final User user = auth().currentUser;
+  Future<InfoUser> currentUser() async {
+    final User user = await auth().currentUser;
     return userFromFirebase(user);
   }
 

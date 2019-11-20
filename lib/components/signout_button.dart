@@ -8,6 +8,7 @@ class SignOut extends StatelessWidget {
   _signOut(BuildContext context) {
     try {
       AuthService().signOut();
+      Navigator.of(context).pushNamed('/SignIn');
     } catch (e) {
       Scaffold.of(context).showSnackBar(
         SnackBar(
@@ -33,7 +34,9 @@ class SignOut extends StatelessWidget {
           icon: Icon(Icons.exit_to_app),
           color: Colors.white,
           tooltip: 'Sign Out',
-          onPressed: _signOut(context),
+          onPressed: () {
+            _signOut(context);
+          },
         ),
       );
     });

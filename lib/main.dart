@@ -26,21 +26,20 @@ class App extends StatelessWidget {
         StreamProvider<InfoUser>.value(value: AuthService().onAuthStateChanged)
       ],
       child: OverlaySupport(
-        child: MaterialApp(
-          routes: {
-            '/GetStarted': (context) => GetStarted(),
-            '/SignIn': (context) => SignIn(),
-            '/SignUp': (context) => SignUp(),
-            '/SuccessSignIn': (context) => SuccessSignIn(),
-            '/MyDashboard': (context) => MyDashboard(),
-            '/SendMoney': (context) => SendMoney(),
-            '/Contacts': (context) => Contacts(),
-            '/SuccessSend': (context) => SuccessSend(),
-          },
-          initialRoute: '/GetStarted',
-          debugShowCheckedModeBanner: false,
-        ),
-      ),
+          child: MaterialApp(
+        routes: {
+          '/GetStarted': (context) => GetStarted(),
+          '/SignIn': (context) => SignIn(),
+          '/SignUp': (context) => SignUp(),
+          '/SuccessSignIn': (context) => SuccessSignIn(),
+          '/MyDashboard': (context) => MyDashboard(),
+          '/SendMoney': (context) => SendMoney(),
+          '/Contacts': (context) => Contacts(),
+          '/SuccessSend': (context) => SuccessSend(),
+        },
+        initialRoute: '/GetStarted',
+        debugShowCheckedModeBanner: false,
+      )),
     );
   }
 }
