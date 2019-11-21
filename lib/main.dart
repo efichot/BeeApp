@@ -21,21 +21,39 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     messaging(context); // In-app notifications on mobile
 
+    _protectedNoAuth(BuildContext context, Widget page) {
+      InfoUser user = Provider.of<InfoUser>(context);
+      if (user == null) {
+        return page;
+      }
+      return MyDashboard();
+    }
+
+    Widget _protectedAuth(BuildContext context, Widget page) {
+      InfoUser user = Provider.of<InfoUser>(context);
+      if (user != null) {
+        return page;
+      }
+      return SignIn();
+    }
+
     return MultiProvider(
       providers: [
-        StreamProvider<InfoUser>.value(value: AuthService().onAuthStateChanged)
+        Provider<bool>.value(value: identical(0, 0.0)),
+        StreamProvider<InfoUser>.value(value: AuthService().onAuthStateChanged),
       ],
       child: OverlaySupport(
           child: MaterialApp(
         routes: {
-          '/GetStarted': (context) => GetStarted(),
-          '/SignIn': (context) => SignIn(),
-          '/SignUp': (context) => SignUp(),
-          '/SuccessSignIn': (context) => SuccessSignIn(),
-          '/MyDashboard': (context) => MyDashboard(),
-          '/SendMoney': (context) => SendMoney(),
-          '/Contacts': (context) => Contacts(),
-          '/SuccessSend': (context) => SuccessSend(),
+          '/GetStarted': (context) => _protectedNoAuth(context, GetStarted()),
+          '/SignIn': (context) => _protectedNoAuth(context, SignIn()),
+          '/SignUp': (context) => _protectedNoAuth(context, SignUp()),
+          '/SuccessSignIn': (context) =>
+              _protectedAuth(context, SuccessSignIn()),
+          '/MyDashboard': (context) => _protectedAuth(context, MyDashboard()),
+          '/SendMoney': (context) => _protectedAuth(context, SendMoney()),
+          '/Contacts': (context) => _protectedAuth(context, Contacts()),
+          '/SuccessSend': (context) => _protectedAuth(context, SuccessSend()),
         },
         initialRoute: '/GetStarted',
         debugShowCheckedModeBanner: false,

@@ -8,7 +8,7 @@ class SignOut extends StatelessWidget {
   _signOut(BuildContext context) {
     try {
       AuthService().signOut();
-      Navigator.of(context).pushNamed('/SignIn');
+      Navigator.of(context).pushNamedAndRemoveUntil('/SignIn', (e) => false);
     } catch (e) {
       Scaffold.of(context).showSnackBar(
         SnackBar(
