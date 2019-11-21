@@ -29,10 +29,7 @@ class App extends StatelessWidget {
         initialData: null,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) if (Provider.of<bool>(context)) {
-              window.history.replaceState(null, null, '/#/MyDashboard');
-              return MyDashboard();
-            }
+            if (snapshot.hasData) return MyDashboard();
             return page;
           }
           return Scaffold(body: Center(child: CircularProgressIndicator()));
@@ -50,7 +47,7 @@ class App extends StatelessWidget {
               return page;
             else {
               if (Provider.of<bool>(context))
-                window.history.replaceState(null, null, '/#/SignIn');
+                window.history.pushState(null, null, '/#/SignIn');
               return SignIn();
             }
           }
