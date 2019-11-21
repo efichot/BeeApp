@@ -1,3 +1,5 @@
+import 'dart:html' if (dart.library.io) 'package:bee_app/models/mobile.dart';
+
 import 'package:bee_app/models/user.dart';
 import 'package:bee_app/screens/contacts/contacts.dart';
 import 'package:bee_app/screens/get_started/get_started.dart';
@@ -21,20 +23,40 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     messaging(context); // In-app notifications on mobile
 
-    _protectedNoAuth(BuildContext context, Widget page) {
-      InfoUser user = Provider.of<InfoUser>(context);
-      if (user == null) {
-        return page;
-      }
-      return MyDashboard();
+    Widget _protectedNoAuth(Widget page) {
+      return FutureBuilder<InfoUser>(
+        future: AuthService().currentUser(),
+        initialData: null,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) if (Provider.of<bool>(context)) {
+              window.history.replaceState(null, null, '/#/MyDashboard');
+              return MyDashboard();
+            }
+            return page;
+          }
+          return Scaffold(body: Center(child: CircularProgressIndicator()));
+        },
+      );
     }
 
-    Widget _protectedAuth(BuildContext context, Widget page) {
-      InfoUser user = Provider.of<InfoUser>(context);
-      if (user != null) {
-        return page;
-      }
-      return SignIn();
+    Widget _protectedAuth(Widget page) {
+      return FutureBuilder<InfoUser>(
+        future: AuthService().currentUser(),
+        initialData: null,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData)
+              return page;
+            else {
+              if (Provider.of<bool>(context))
+                window.history.replaceState(null, null, '/#/SignIn');
+              return SignIn();
+            }
+          }
+          return Scaffold(body: Center(child: CircularProgressIndicator()));
+        },
+      );
     }
 
     return MultiProvider(
@@ -45,15 +67,14 @@ class App extends StatelessWidget {
       child: OverlaySupport(
           child: MaterialApp(
         routes: {
-          '/GetStarted': (context) => _protectedNoAuth(context, GetStarted()),
-          '/SignIn': (context) => _protectedNoAuth(context, SignIn()),
-          '/SignUp': (context) => _protectedNoAuth(context, SignUp()),
-          '/SuccessSignIn': (context) =>
-              _protectedAuth(context, SuccessSignIn()),
-          '/MyDashboard': (context) => _protectedAuth(context, MyDashboard()),
-          '/SendMoney': (context) => _protectedAuth(context, SendMoney()),
-          '/Contacts': (context) => _protectedAuth(context, Contacts()),
-          '/SuccessSend': (context) => _protectedAuth(context, SuccessSend()),
+          '/GetStarted': (context) => _protectedNoAuth(GetStarted()),
+          '/SignIn': (context) => _protectedNoAuth(SignIn()),
+          '/SignUp': (context) => _protectedNoAuth(SignUp()),
+          '/SuccessSignIn': (context) => _protectedAuth(SuccessSignIn()),
+          '/MyDashboard': (context) => _protectedAuth(MyDashboard()),
+          '/SendMoney': (context) => _protectedAuth(SendMoney()),
+          '/Contacts': (context) => _protectedAuth(Contacts()),
+          '/SuccessSend': (context) => _protectedAuth(SuccessSend()),
         },
         initialRoute: '/GetStarted',
         debugShowCheckedModeBanner: false,

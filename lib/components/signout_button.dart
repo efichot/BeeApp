@@ -1,6 +1,9 @@
+import 'dart:html' if (dart.library.io) 'package:bee_app/models/mobile.dart';
+
 import 'package:bee_app/services/authMobile.dart'
     if (dart.library.html) 'package:bee_app/services/authWeb.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignOut extends StatelessWidget {
   const SignOut({Key key}) : super(key: key);
@@ -8,6 +11,8 @@ class SignOut extends StatelessWidget {
   _signOut(BuildContext context) {
     try {
       AuthService().signOut();
+      if (Provider.of<bool>(context))
+        window.history.pushState(null, null, '/#/SignIn');
       Navigator.of(context).pushNamedAndRemoveUntil('/SignIn', (e) => false);
     } catch (e) {
       Scaffold.of(context).showSnackBar(
