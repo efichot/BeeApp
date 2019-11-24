@@ -1,5 +1,3 @@
-import 'dart:html' if (dart.library.io) 'package:bee_app/models/mobile.dart';
-
 import 'package:bee_app/models/user.dart';
 import 'package:bee_app/screens/contacts/contacts.dart';
 import 'package:bee_app/screens/get_started/get_started.dart';
@@ -43,13 +41,8 @@ class App extends StatelessWidget {
         initialData: null,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData)
-              return page;
-            else {
-              if (Provider.of<bool>(context))
-                window.history.pushState(null, null, '/#/SignIn');
-              return SignIn();
-            }
+            if (snapshot.hasData) return page;
+            return SignIn();
           }
           return Scaffold(body: Center(child: CircularProgressIndicator()));
         },

@@ -57,7 +57,8 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin {
       InfoUser user =
           await AuthService().signInWithEmailAndPassword(email, password);
       if (user != null) {
-        Navigator.pushNamed(context, '/SuccessSignIn');
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/SuccessSignIn', (e) => false);
       }
     } catch (e) {
       Scaffold.of(context).showSnackBar(SnackBar(

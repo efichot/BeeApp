@@ -92,7 +92,8 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
     try {
       InfoUser user = await AuthService().signInWithGoogle();
       if (user != null) {
-        Navigator.pushNamed(context, '/MyDashboard');
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/MyDashboard', (e) => false);
       }
     } catch (e) {
       Scaffold.of(context).showSnackBar(
