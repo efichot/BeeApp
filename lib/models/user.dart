@@ -5,12 +5,12 @@ class InfoUser {
     @required this.uid,
     this.email,
     this.displayName,
-    this.photoUrl,
+    this.photoURL,
   });
 
   final String uid;
   final String email;
-  final String photoUrl;
+  final String photoURL;
   final String displayName;
 }
 
@@ -22,6 +22,6 @@ InfoUser userFromFirebase(user) {
     uid: user.uid,
     email: user.email,
     displayName: user.displayName,
-    // photoUrl: user.photoUrl,
+    photoURL: user.photoURL,
   );
 }
