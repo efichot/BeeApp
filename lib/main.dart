@@ -17,37 +17,50 @@ import 'package:provider/provider.dart';
 void main() => runApp(App());
 
 class App extends StatelessWidget {
+  Widget _protectedNoAuth(Widget page) {
+    print('protected no auth');
+
+    return FutureBuilder<InfoUser>(
+      future: AuthService().currentUser(),
+      initialData: null,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasData) {
+            // window.history.replaceState(null, null, '/#/MyDashboard');
+            return MyDashboard();
+          }
+          return page;
+        }
+        return Scaffold(body: Center(child: CircularProgressIndicator()));
+      },
+    );
+  }
+
+  Widget _protectedAuth(Widget page) {
+    print('protected auth');
+
+    return FutureBuilder<InfoUser>(
+      future: AuthService().currentUser(),
+      initialData: null,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasData) {
+            print('protect auth and snapshot have data');
+            // window.history.replaceState(null, null, '/#/SignIn');
+            return page;
+          }
+          print('protect auth and snapshot have no data');
+
+          return SignIn();
+        }
+        return Scaffold(body: Center(child: CircularProgressIndicator()));
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     messaging(context); // In-app notifications on mobile
-
-    Widget _protectedNoAuth(Widget page) {
-      return FutureBuilder<InfoUser>(
-        future: AuthService().currentUser(),
-        initialData: null,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) return MyDashboard();
-            return page;
-          }
-          return Scaffold(body: Center(child: CircularProgressIndicator()));
-        },
-      );
-    }
-
-    Widget _protectedAuth(Widget page) {
-      return FutureBuilder<InfoUser>(
-        future: AuthService().currentUser(),
-        initialData: null,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) return page;
-            return SignIn();
-          }
-          return Scaffold(body: Center(child: CircularProgressIndicator()));
-        },
-      );
-    }
 
     return MultiProvider(
       providers: [

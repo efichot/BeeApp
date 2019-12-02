@@ -1,3 +1,5 @@
+import 'dart:html' if (dart.library.io) 'package:bee_app/models/mobile.dart';
+
 import 'package:bee_app/models/user.dart';
 import 'package:bee_app/screens/sign_in/btn_sign_in_button.dart';
 import 'package:bee_app/screens/sign_in/btn_sign_up_button.dart';
@@ -7,6 +9,7 @@ import 'package:bee_app/services/authMobile.dart'
     if (dart.library.html) 'package:bee_app/services/authWeb.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -57,8 +60,10 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin {
       InfoUser user =
           await AuthService().signInWithEmailAndPassword(email, password);
       if (user != null) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/SuccessSignIn', (e) => false);
+        if (Provider.of<bool>(context))
+          window.history.pushState(null, null, '/#/SuccessSignIn');
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/SuccessSignIn', (e) => false);
       }
     } catch (e) {
       Scaffold.of(context).showSnackBar(SnackBar(
