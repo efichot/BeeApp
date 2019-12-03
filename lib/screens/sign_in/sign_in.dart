@@ -1,6 +1,6 @@
-import 'dart:html' if (dart.library.io) 'package:bee_app/models/mobile.dart';
-
 import 'package:bee_app/models/user.dart';
+import 'package:bee_app/models/web.dart'
+    if (dart.library.io) 'package:bee_app/models/mobile.dart';
 import 'package:bee_app/screens/sign_in/btn_sign_in_button.dart';
 import 'package:bee_app/screens/sign_in/btn_sign_up_button.dart';
 import 'package:bee_app/screens/sign_in/email_address.dart';
@@ -45,13 +45,12 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
-
     this.appLogoAnimationController.dispose();
     this.emailAddressAnimationController.dispose();
     this.passwordAnimationController.dispose();
     this.btnSignInButtonAnimationController.dispose();
     this.btnSignUpButtonAnimationController.dispose();
+    super.dispose();
   }
 
   void onBtnGetStartedPressed(

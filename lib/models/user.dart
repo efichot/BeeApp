@@ -22,6 +22,6 @@ InfoUser userFromFirebase(user) {
     uid: user.uid,
     email: user.email,
     displayName: user.displayName,
-    photoURL: user.photoURL,
+    photoURL: identical(0, 0.0) ? user.photoURL : user.photoUrl,
   );
 }

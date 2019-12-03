@@ -1,5 +1,5 @@
-import 'dart:html' if (dart.library.io) 'package:bee_app/models/mobile.dart';
-
+import 'package:bee_app/models/web.dart'
+    if (dart.library.io) 'package:bee_app/models/mobile.dart';
 import 'package:bee_app/services/authMobile.dart'
     if (dart.library.html) 'package:bee_app/services/authWeb.dart';
 import 'package:flutter/material.dart';

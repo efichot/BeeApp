@@ -46,8 +46,6 @@ class _MyDashboardState extends State<MyDashboard>
 
   @override
   void dispose() {
-    super.dispose();
-
     this.headerAnimationController.dispose();
     this.cardAnimationController.dispose();
     this.recentTransactionAnimationController.dispose();
@@ -55,6 +53,7 @@ class _MyDashboardState extends State<MyDashboard>
     this.itemMenuAnimationController.dispose();
     this.itemMenuThreeAnimationController.dispose();
     this.itemMenuTwoAnimationController.dispose();
+    super.dispose();
   }
 
   void onSendMoneyPressed(BuildContext context) =>

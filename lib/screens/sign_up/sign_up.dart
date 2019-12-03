@@ -51,8 +51,6 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
-
     this.appLogoAnimationController.dispose();
     this.usernameAnimationController.dispose();
     this.passwordAnimationController.dispose();
@@ -60,6 +58,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
     this.btnSignUpButtonAnimationController.dispose();
     this.btnSignInButtonAnimationController.dispose();
     this.btnSignUpWithGoogleButtonAnimationController.dispose();
+    super.dispose();
   }
 
   void onBtnGetStartedPressed(

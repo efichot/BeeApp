@@ -31,11 +31,10 @@ class _SuccessSignInState extends State<SuccessSignIn>
 
   @override
   void dispose() {
-    super.dispose();
-
     this.iconUserAnimationController.dispose();
     this.viewTwoAnimationController.dispose();
     this.btnDashboardButtonAnimationController.dispose();
+    super.dispose();
   }
 
   void onBtnDashboardPressed(BuildContext context) =>
@@ -58,7 +57,7 @@ class _SuccessSignInState extends State<SuccessSignIn>
         child: Column(
           children: [
             Container(
-              width: 136,
+              width: 146,
               height: 136,
               margin: EdgeInsets.only(top: 103),
               child: iconUser(

@@ -29,11 +29,10 @@ class _GetStartedState extends State<GetStarted> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
-
     this.appLogoAnimationController.dispose();
     this.btnGetStartedButtonAnimationController.dispose();
     this.sendMoneyToFriendTextAnimationController.dispose();
+    super.dispose();
   }
 
   void onBtnGetStartedPressed(BuildContext context) =>

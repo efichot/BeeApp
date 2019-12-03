@@ -23,10 +23,9 @@ class _ContactsState extends State<Contacts> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
-
     this.headerAnimationController.dispose();
     this.friendsAnimationController.dispose();
+    super.dispose();
   }
 
   void onBtnSendPressed(BuildContext context) =>
