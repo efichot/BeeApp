@@ -17,11 +17,11 @@ import 'package:provider/provider.dart';
 void main() => runApp(App());
 
 class App extends StatelessWidget {
-  auth(Widget page, BuildContext context) {
-    InfoUser user = Provider.of<InfoUser>(context);
-    print(user);
-    return user != null ? page : SignIn();
-  }
+  Widget auth(Widget page, BuildContext context) =>
+      Provider.of<InfoUser>(context) != null ? page : SignIn();
+
+  Widget noAuth(Widget page, BuildContext context) =>
+      Provider.of<InfoUser>(context) != null ? MyDashboard() : page;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,9 @@ class App extends StatelessWidget {
         ],
         child: MaterialApp(
           routes: {
-            '/GetStarted': (context) => GetStarted(),
-            '/SignIn': (context) => SignIn(),
-            '/SignUp': (context) => SignUp(),
+            '/GetStarted': (context) => noAuth(GetStarted(), context),
+            '/SignIn': (context) => noAuth(SignIn(), context),
+            '/SignUp': (context) => noAuth(SignUp(), context),
             '/SuccessSignIn': (context) => auth(SuccessSignIn(), context),
             '/MyDashboard': (context) => auth(MyDashboard(), context),
             '/SendMoney': (context) => auth(SendMoney(), context),
