@@ -4,8 +4,6 @@ import 'package:bee_app/screens/get_started/get_started.dart';
 import 'package:bee_app/screens/my_dashboard/my_dashboard.dart';
 import 'package:bee_app/screens/send_money/send_money.dart';
 import 'package:bee_app/screens/sign_in/sign_in.dart';
-import 'package:bee_app/screens/sign_up/sign_up.dart';
-import 'package:bee_app/screens/success_send/success_send.dart';
 import 'package:bee_app/screens/success_sign_in/success_sign_in.dart';
 import 'package:bee_app/services/authMobile.dart'
     if (dart.library.html) 'package:bee_app/services/authWeb.dart';
@@ -16,72 +14,95 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(App());
 
+Widget authWidget(Widget page, AsyncSnapshot<InfoUser> userSnapshot) {
+  if (userSnapshot.connectionState == ConnectionState.active) {
+    return userSnapshot.hasData ? page : SignIn();
+  }
+  return Scaffold(
+    body: Center(
+      child: CircularProgressIndicator(),
+    ),
+  );
+}
+
 class App extends StatelessWidget {
-  Widget _protectedNoAuth(Widget page) {
-    print('protected no auth');
-
-    return FutureBuilder<InfoUser>(
-      future: AuthService().currentUser(),
-      initialData: null,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasData) {
-            // window.history.replaceState(null, null, '/#/MyDashboard');
-            return MyDashboard();
-          }
-          return page;
-        }
-        return Scaffold(body: Center(child: CircularProgressIndicator()));
-      },
-    );
-  }
-
-  Widget _protectedAuth(Widget page) {
-    print('protected auth');
-
-    return FutureBuilder<InfoUser>(
-      future: AuthService().currentUser(),
-      initialData: null,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasData) {
-            print('protect auth and snapshot have data');
-            // window.history.replaceState(null, null, '/#/SignIn');
-            return page;
-          }
-          print('protect auth and snapshot have no data');
-
-          return SignIn();
-        }
-        return Scaffold(body: Center(child: CircularProgressIndicator()));
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     messaging(context); // In-app notifications on mobile
 
-    return MultiProvider(
-      providers: [
-        Provider<bool>.value(value: identical(0, 0.0)),
-        StreamProvider<InfoUser>.value(value: AuthService().onAuthStateChanged),
-      ],
-      child: OverlaySupport(
-          child: MaterialApp(
-        routes: {
-          '/GetStarted': (context) => _protectedNoAuth(GetStarted()),
-          '/SignIn': (context) => _protectedNoAuth(SignIn()),
-          '/SignUp': (context) => _protectedNoAuth(SignUp()),
-          '/SuccessSignIn': (context) => _protectedAuth(SuccessSignIn()),
-          '/MyDashboard': (context) => _protectedAuth(MyDashboard()),
-          '/SendMoney': (context) => _protectedAuth(SendMoney()),
-          '/Contacts': (context) => _protectedAuth(Contacts()),
-          '/SuccessSend': (context) => _protectedAuth(SuccessSend()),
-        },
-        initialRoute: '/GetStarted',
-        debugShowCheckedModeBanner: false,
-      )),
+    return OverlaySupport(
+      child: AuthWidgetBuilder(builder:
+          (BuildContext context, AsyncSnapshot<InfoUser> userSnapshot) {
+        print('qqq $userSnapshot');
+        if (userSnapshot.connectionState == ConnectionState.active) {}
+        return MaterialApp(
+          home: AuthWidget(
+            userSnapshot: userSnapshot,
+          ),
+          routes: {
+            '/GetStarted': (context) => GetStarted(),
+            '/SignIn': (context) => SignIn(),
+            '/SignUp': (context) => SignIn(),
+            '/SuccessSignIn': (context) {
+              print('www $userSnapshot');
+              return authWidget(SuccessSignIn(), userSnapshot);
+            },
+            '/MyDashboard': (context) =>
+                authWidget(MyDashboard(), userSnapshot),
+            '/SendMoney': (context) => authWidget(SendMoney(), userSnapshot),
+            '/Contacts': (context) => authWidget(Contacts(), userSnapshot),
+            '/SuccessSend': (context) =>
+                authWidget(SuccessSignIn(), userSnapshot),
+          },
+          initialRoute: '/GetStarted',
+          debugShowCheckedModeBanner: false,
+        );
+      }),
+    );
+  }
+}
+
+class AuthWidget extends StatelessWidget {
+  const AuthWidget({Key key, @required this.userSnapshot}) : super(key: key);
+  final AsyncSnapshot<InfoUser> userSnapshot;
+
+  @override
+  Widget build(BuildContext context) {
+    if (userSnapshot.connectionState == ConnectionState.active) {
+      return userSnapshot.hasData ? MyDashboard() : SignIn();
+    }
+    return Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+}
+
+/// Used to create user-dependent objects that need to be accessible by all widgets.
+/// This widgets should live above the [MaterialApp].
+/// See [AuthWidget], a descendant widget that consumes the snapshot generated by this builder.
+class AuthWidgetBuilder extends StatelessWidget {
+  const AuthWidgetBuilder({Key key, @required this.builder}) : super(key: key);
+  final Widget Function(BuildContext, AsyncSnapshot<InfoUser>) builder;
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<InfoUser>(
+      stream: AuthService().onAuthStateChanged,
+      builder: (BuildContext context, AsyncSnapshot<InfoUser> snapshot) {
+        final InfoUser user = snapshot.data;
+        if (user != null) {
+          return MultiProvider(
+            providers: <SingleChildCloneableWidget>[
+              Provider<InfoUser>.value(value: user),
+              // NOTE: Any other user-bound providers here can be added here
+            ],
+            child: builder(context, snapshot),
+          );
+        }
+        return builder(context, snapshot);
+      },
     );
   }
 }
