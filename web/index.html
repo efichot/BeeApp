@@ -5,8 +5,6 @@
   <title>bee_app</title>
   <link rel="icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/loader.css">
-  <script defer src="/assets/js/vanillatoasts.js"></script>
-  <link href="/assets/css/vanillatoasts.css" rel="stylesheet" />
 </head>
 <body>
   <div class="loader">
@@ -34,30 +32,6 @@
     firebase.initializeApp(config);
     // FA
     firebase.analytics();
-    //FCM
-    const messaging = firebase.messaging()
-
-    messaging
-      .requestPermission()
-      .then(() => {
-        console.log('Have Permission')
-        return messaging.getToken()
-      })
-      .then(token => {
-        console.log(token)
-      })
-      .catch(console.log('Error Occured'))
-
-    messaging.onMessage(payload => {
-      console.log('Message received. ', payload)
-      VanillaToasts.create({
-        icon: payload.notification.image,
-        title: payload.notification.title,
-        text: payload.notification.body,
-        timeout: 5000,
-        callback: () => { toast.hide() }
-      });
-    })
   </script>
   <script src="main.dart.js" type="application/javascript"></script>
 </body>

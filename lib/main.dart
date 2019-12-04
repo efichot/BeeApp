@@ -9,7 +9,8 @@ import 'package:bee_app/screens/success_send/success_send.dart';
 import 'package:bee_app/screens/success_sign_in/success_sign_in.dart';
 import 'package:bee_app/services/authMobile.dart'
     if (dart.library.html) 'package:bee_app/services/authWeb.dart';
-import 'package:bee_app/services/messaging.dart';
+import 'package:bee_app/services/messagingMobile.dart'
+    if (dart.library.html) 'package:bee_app/services/messagingWeb.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    messaging(context); // In-app notifications on mobile
+    notifications(context); // In-app notifications
 
     return OverlaySupport(
       child: MultiProvider(
