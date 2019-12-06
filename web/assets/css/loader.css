@@ -1,116 +1,129 @@
-body {
-  height: 100vh;
-}
-
-.loader {
-  position: relative;
-  margin: auto;
-  width: 60px;
-  height: 100%;
-}
-
-.loader:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-}
-
-.circular {
-  animation: rotate 2s linear infinite;
-  -webkit-animation: rotate 2s linear infinite;
-  height: auto;
-  transform-origin: center center;
-  -webkit-transform-origin: center center;
-  width: 100%;
+.pure-material-progress-circular {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 50%;
+  padding: 0.25em;
+  width: 3em;
+  height: 3em;
+  color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  background-color: transparent;
+  font-size: 16px;
+  overflow: hidden;
 }
 
-.path {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-  -webkit-animation: dash 1.5s ease-in-out infinite,
-    color 6s ease-in-out infinite;
-  stroke-linecap: round;
+.pure-material-progress-circular::-webkit-progress-bar {
+  background-color: transparent;
 }
 
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
+/* Indeterminate */
+.pure-material-progress-circular:indeterminate {
+  -webkit-mask-image: linear-gradient(transparent 50%, black 50%),
+    linear-gradient(to right, transparent 50%, black 50%);
+  mask-image: linear-gradient(transparent 50%, black 50%),
+    linear-gradient(to right, transparent 50%, black 50%);
+  animation: pure-material-progress-circular 6s infinite
+    cubic-bezier(0.3, 0.6, 1, 1);
 }
 
-@keyframes dash {
+:-ms-lang(x),
+.pure-material-progress-circular:indeterminate {
+  animation: none;
+}
+
+.pure-material-progress-circular:indeterminate::before,
+.pure-material-progress-circular:indeterminate::-webkit-progress-value {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 0.25em;
+  border: solid 0.25em transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  width: 100% !important;
+  height: 100%;
+  background-color: transparent;
+  animation: pure-material-progress-circular-pseudo 0.75s infinite linear
+    alternate;
+}
+
+.pure-material-progress-circular:indeterminate::-moz-progress-bar {
+  box-sizing: border-box;
+  border: solid 0.25em transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  animation: pure-material-progress-circular-pseudo 0.75s infinite linear
+    alternate;
+}
+
+.pure-material-progress-circular:indeterminate::-ms-fill {
+  animation-name: -ms-ring;
+}
+
+@keyframes pure-material-progress-circular {
   0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
+    transform: rotate(0deg);
+  }
+  12.5% {
+    transform: rotate(180deg);
+    animation-timing-function: linear;
+  }
+  25% {
+    transform: rotate(630deg);
+  }
+  37.5% {
+    transform: rotate(810deg);
+    animation-timing-function: linear;
   }
   50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
+    transform: rotate(1260deg);
+  }
+  62.5% {
+    transform: rotate(1440deg);
+    animation-timing-function: linear;
+  }
+  75% {
+    transform: rotate(1890deg);
+  }
+  87.5% {
+    transform: rotate(2070deg);
+    animation-timing-function: linear;
   }
   100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
+    transform: rotate(2520deg);
   }
 }
 
-@keyframes color {
-  100%,
+@keyframes pure-material-progress-circular-pseudo {
   0% {
-    stroke: #d62d20;
+    transform: rotate(-30deg);
   }
-  40% {
-    stroke: #0057e7;
+  29.4% {
+    border-left-color: transparent;
   }
-  66% {
-    stroke: #008744;
+  29.41% {
+    border-left-color: currentColor;
   }
-  80%,
-  90% {
-    stroke: #ffa700;
+  64.7% {
+    border-bottom-color: transparent;
   }
-}
-
-@-webkit-keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@-webkit-keyframes dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
+  64.71% {
+    border-bottom-color: currentColor;
   }
   100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
-  }
-}
-
-@-webkit-keyframes color {
-  100%,
-  0% {
-    stroke: #d62d20;
-  }
-  40% {
-    stroke: #0057e7;
-  }
-  66% {
-    stroke: #008744;
-  }
-  80%,
-  90% {
-    stroke: #ffa700;
+    border-left-color: currentColor;
+    border-bottom-color: currentColor;
+    transform: rotate(225deg);
   }
 }

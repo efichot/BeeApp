@@ -4,9 +4,9 @@ import 'package:firebase/firebase.dart';
 notifications(context) {
   messaging().requestPermission().then((p) {
     print('Have Permission');
-    return messaging().getToken();
-  }).then((token) {
-    print(token);
+    messaging().getToken().then((token) {
+      print(token);
+    });
   }).catchError(() {
     print('Error Occured');
   });
