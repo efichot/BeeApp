@@ -12,6 +12,7 @@ import 'package:bee_app/services/authMobile.dart'
 import 'package:bee_app/services/messagingMobile.dart'
     if (dart.library.html) 'package:bee_app/services/messagingWeb.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,11 @@ class App extends StatelessWidget {
               value: AuthService().onAuthStateChanged)
         ],
         child: MaterialApp(
+          theme: ThemeData(
+            textTheme: GoogleFonts.montserratTextTheme(
+              Theme.of(context).textTheme,
+            ),
+          ),
           routes: {
             '/GetStarted': (context) => noAuth(GetStarted(), context),
             '/SignIn': (context) => noAuth(SignIn(), context),

@@ -20,6 +20,7 @@ dependencies:
   overlay_support: ^1.0.2
   firebase: ^6.0.0
   google_sign_in: ^4.0.14
+  google_fonts: ^0.1.1
 
 dev_dependencies:
   flutter_launcher_icons:
@@ -35,7 +36,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-  fonts:
-    - family: .AppleSystemUIFont
-      fonts:
-        - asset: assets/fonts/SFNS.ttf
